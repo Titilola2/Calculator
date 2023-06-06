@@ -1,90 +1,81 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 
 function App() {
-    const[calc, setCalc] = useState("");
-    const [result, setresult] = useState("");
+  const [calc, setCalc] = useState("");
+  const [result, setResult] = useState("");
 
-    const ops = ['/', '*', '+', '-', '.', ];
+  const ops = ['/', '*', '+', '-', '.'];
 
-    const updateCalc= value =>{
-      if (
-        ops.includes(value) && calc === '' || 
-        ops.includes(value) && ops.includes(calc.slice(-1)
-        )
-      ){
-        return;
-      }
-      setCalc(calc + value);
-      if (!ops.includes(value)){
-        setresult(eval(calc + value).toString());
-      }
+  const updateCalculat = value => {
+    if (
+      ops.includes(value) && calc === "" ||
+      ops.includes(value) && ops.includes(calc.slice(-1))
+    ) {
+      return;
     }
+    setCalc(calc + value);
+    if (!ops.includes(value)) {
+      setResult(eval(calc + value).toString());
+    }
+  };
 
   const createDigits = () => {
-    const digits =[];
-    
-    for (let i = 1; i<10; i++){
+    const digits = [];
+
+    for (let i = 1; i < 10; i++) {
       digits.push(
-        <button onClick={() => updateCalc(i.toString())}
-         key={i}>
+        <button
+          onClick={() => updateCalculat(i.toString())}
+          key={i}
+        >
           {i}
-          </button>
-      )
+        </button>
+      );
     }
     return digits;
+  };
 
-  
-  }
-
-  const calculate = () =>{
+  const calculate = () => {
     setCalc(eval(calc).toString());
-  }
+  };
 
-  const deleteEntry = () =>{
-    if (calc == ''){
+  const deleteEntry = () => {
+    if (calc === "") {
       return;
     }
     const value = calc.slice(0, -1);
     setCalc(value);
-  } 
+  };
 
   const deleteAll = () => {
     setCalc("");
-    setresult("");
+    setResult("");
   };
-  
 
   return (
     <div className="App">
-     <div className="calculator">
-       <div className="display">
-        {result ? <span>result</span> : ''}
-         { calc || "0"}
-       </div>
-
-       <div classname="digits">
-            {createDigits()}
-           
-            <button class="grid-i" onClick={calculate}>=</button>
-           
+      <div className="calculator">
+        <div className="display">
+          {result ? <span>Result</span> : ""}
+          {calc || "0"}
         </div>
 
-       <div classname="operators">
-        <button class="grid-item" onClick={() => updateCalc('/')}>/</button>
-        <button class="grid-item" onClick={() => updateCalc('*')}>*</button>
-        <button class="grid-item" onClick={() => updateCalc('+')}>+</button>
-        <button class="grid-item" onClick={() => updateCalc('-')}>-</button>
-        <button class="grid-item" onClick={deleteEntry}>DEL</button>
-        <button class="grid-item" onClick={deleteAll}>C</button>
-        <button class="grid-item" onClick={() => updateCalc('(')}>(</button>
-        <button class="grid-item" onClick={() => updateCalc(')')}>)</button>
-        
-       </div>
-       
-       
-       
+        <div className="digits">
+          {createDigits()}
+          <button className="grid-i" onClick={calculate}>=</button>
+        </div>
 
-     </div>
+        <div className="operators">
+          <button className="grid-item" onClick={() => updateCalculat("/")}>/</button>
+          <button className="grid-item" onClick={() => updateCalculat("*")}>*</button>
+          <button className="grid-item" onClick={() => updateCalculat("+")}>+</button>
+          <button className="grid-item" onClick={() => updateCalculat("-")}>-</button>
+          <button className="grid-item" onClick={deleteEntry}>DEL</button>
+          <button className="grid-item" onClick={deleteAll}>C</button>
+          <button className="grid-item" onClick={() => updateCalculat("0")}>0</button>
+          <button className="grid-item" onClick={() => updateCalculat("00")}>00</button>
+        </div>
+      </div>
     </div>
   );
 }
