@@ -8,15 +8,25 @@ function App() {
 
   const updateCalculat = value => {
     if (
-      ops.includes(value) && calc === "" ||
-      ops.includes(value) && ops.includes(calc.slice(-1))
+     ( ops.includes(value) && calc === "") ||
+     ( ops.includes(value) && ops.includes(calc.slice(-1)))
     ) {
       return;
     }
     setCalc(calc + value);
-    if (!ops.includes(value)) {
+    /*if (!ops.includes(value)) {
       setResult(eval(calc + value).toString());
+    }*/
+    if (!ops.includes(value)) {
+      try {
+        const expression = new Function('return ' + calc + value)();
+        setResult(expression.toString());
+      } catch (error) {
+        // Handle any potential errors during the calculation
+        console.error(error);
+      }
     }
+    
   };
 
   const createDigits = () => {
@@ -35,9 +45,20 @@ function App() {
     return digits;
   };
 
-  const calculate = () => {
+  /*const calculate = () => {
     setCalc(eval(calc).toString());
+  };*/
+
+  const calculate = () => {
+    try {
+      const result = new Function('return ' + calc)();
+      setCalc(result.toString());
+    } catch (error) {
+      // Handle any potential errors during the calculation
+      console.error(error);
+    }
   };
+  
 
   const deleteEntry = () => {
     if (calc === "") {
