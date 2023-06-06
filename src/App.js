@@ -62,26 +62,26 @@ function App() {
          { calc || "0"}
        </div>
 
+       <div classname="digits">
+            {createDigits()}
+           
+            <button class="grid-i" onClick={calculate}>=</button>
+           
+        </div>
+
        <div classname="operators">
-        <button onClick={() => updateCalc('/')}>/</button>
-        <button onClick={() => updateCalc('*')}>*</button>
-        <button onClick={() => updateCalc('+')}>+</button>
-        <button onClick={() => updateCalc('-')}>-</button>
+        <button class="grid-item" onClick={() => updateCalc('/')}>/</button>
+        <button class="grid-item" onClick={() => updateCalc('*')}>*</button>
+        <button class="grid-item" onClick={() => updateCalc('+')}>+</button>
+        <button class="grid-item" onClick={() => updateCalc('-')}>-</button>
+        <button class="grid-item" onClick={deleteEntry}>DEL</button>
+        <button class="grid-item" onClick={deleteAll}>C</button>
+        <button class="grid-item" onClick={() => updateCalc('(')}>(</button>
+        <button class="grid-item" onClick={() => updateCalc(')')}>)</button>
         
-        <button onClick={deleteEntry}>DEL</button>
-        
-        <button onClick={deleteAll}>C</button>
        </div>
        
-        <div classname="digits">
-            {createDigits()}
-            <button onClick={() => updateCalc('0')}>0</button>
-            <button onClick={() => updateCalc('.')}>.</button>
-            <button onClick={calculate}>=</button>
-            <button onClick={() => updateCalc('(')}>(</button>
-            <button onClick={() => updateCalc(')')}>)</button>
-            
-        </div>
+       
        
 
      </div>

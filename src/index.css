@@ -32,6 +32,8 @@ body {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.4);
+ 
+
 }
 
 .display {
@@ -54,11 +56,13 @@ button {
   outline: none;
   color: #9b03ba;
   font-size: 20px;
-  padding: 20.37px;
+  padding: 30px;
   cursor: pointer;
   transition: 0.4s;
   box-shadow: 0px 2px 64px rgba(0, 0, 0, 0.2);
   background-color: var(--light);
+  
+
 }
 
 button:hover {
@@ -66,7 +70,7 @@ button:hover {
 }
 
 .operators {
-  display: grid;
+  display: ;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   width: 100%;
@@ -77,14 +81,12 @@ button:hover {
   font-weight: 700;
 }
 
-.digits {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+
+
+.grid-item{
+  width: 25%;
 }
 
 .digits button {
-  flex: 1 1 33.333%;
-  max-width: 33.333%;
   background-color: var(--dark);
 }
